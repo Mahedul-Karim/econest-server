@@ -11,3 +11,12 @@ exports.featuredGardener = asyncWrapper(async (req, res) => {
     gardeners,
   });
 });
+
+exports.allGardeners = asyncWrapper(async (req, res) => {
+  const gardeners = await Gardener.find();
+
+  res.status(200).json({
+    success: true,
+    gardeners,
+  });
+});

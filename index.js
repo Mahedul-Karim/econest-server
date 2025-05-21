@@ -7,6 +7,7 @@ const { handleError } = require("./controller/error");
 
 const userRoutes = require("./routes/user");
 const tipRoutes = require("./routes/tip");
+const gardenerRoutes = require('./routes/gardeners');
 
 const app = express();
 
@@ -19,6 +20,7 @@ app.use(express.json());
 
 app.use("/user", userRoutes);
 app.use("/tips", tipRoutes);
+app.use("/gardeners", gardenerRoutes);
 
 app.use(handleError);
 
