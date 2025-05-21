@@ -6,12 +6,18 @@ const {
   deleteTips,
   updateTips,
   createTip,
+  updateLikes,
 } = require("../controller/tips");
 
 const router = express.Router();
 
 router.route("/").get(allTips).post(userTips);
 router.route("/create").post(createTip);
-router.route("/:tipId").get(tipDetails).delete(deleteTips).patch(updateTips);
+router
+  .route("/:tipId")
+  .get(tipDetails)
+  .delete(deleteTips)
+  .patch(updateTips)
+  .put(updateLikes);
 
 module.exports = router;

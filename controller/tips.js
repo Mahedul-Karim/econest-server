@@ -66,7 +66,7 @@ exports.updateTips = asyncWrapper(async (req, res) => {
 
   const data = req.body;
 
-  const tip = await Tip.findByIdAndUpdate(tipId, data);
+  const tip = await Tip.findByIdAndUpdate(tipId, data, { new: true });
 
   res.status(200).json({
     success: true,
@@ -83,6 +83,27 @@ exports.createTip = asyncWrapper(async (req, res) => {
   res.status(201).json({
     success: true,
     message: "Tip created successfully!",
+    tip,
+  });
+});
+
+exports.updateLikes = asyncWrapper(async (req, res) => {
+  const { tipId } = req.params;
+
+  const tip = await Tip.findByIdAndUpdate(
+    tipId,
+    {
+      $inc: {
+        totalLiked: 1,
+      },
+    },
+    {
+      new: true,
+    }
+  );
+
+  res.status(200).json({
+    success: true,
     tip,
   });
 });
