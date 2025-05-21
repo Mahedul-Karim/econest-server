@@ -7,11 +7,13 @@ const {
   updateTips,
   createTip,
   updateLikes,
+  featuredTips,
 } = require("../controller/tips");
 
 const router = express.Router();
 
 router.route("/").get(allTips).post(userTips);
+router.route("/featured").get(featuredTips);
 router.route("/create").post(createTip);
 router
   .route("/:tipId")

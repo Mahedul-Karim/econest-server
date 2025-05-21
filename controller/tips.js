@@ -107,3 +107,12 @@ exports.updateLikes = asyncWrapper(async (req, res) => {
     tip,
   });
 });
+
+exports.featuredTips = asyncWrapper(async (req, res) => {
+  const tips = await Tip.find({ availability: "Public" }).limit(6);
+
+  res.status(200).json({
+    success: true,
+    tips,
+  });
+});
