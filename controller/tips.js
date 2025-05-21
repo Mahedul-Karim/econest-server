@@ -22,3 +22,14 @@ exports.tipDetails = asyncWrapper(async (req, res) => {
     tip: tip || null,
   });
 });
+
+exports.userTips = asyncWrapper(async (req, res) => {
+  const { email } = req.body;
+
+  const tips = await Tip.find({ email });
+
+  res.status(200).json({
+    success: true,
+    tips,
+  });
+});
