@@ -39,6 +39,6 @@ const tipSchema = new mongoose.Schema({
   },
 });
 
-const Tip = mongoose.model("Tip", userSchema);
+const Tip = mongoose.model("Tip", tipSchema);
 
-module.exports = User;
+module.exports = Tip;
