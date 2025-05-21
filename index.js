@@ -6,14 +6,12 @@ const { connectDB } = require("./config/db");
 const { handleError } = require("./controller/error");
 
 const userRoutes = require("./routes/user");
-const Tip = require("./model/tip");
 
 const app = express();
 
 const PORT = process.env.PORT || 3000;
 
 connectDB();
-
 
 
 app.use(cors());
