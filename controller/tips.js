@@ -11,3 +11,14 @@ exports.allTips = asyncWrapper(async (req, res) => {
     tips,
   });
 });
+
+exports.tipDetails = asyncWrapper(async (req, res) => {
+  const { tipId } = req.params;
+
+  const tip = await Tip.findById(tipId);
+
+  res.status(200).json({
+    success: true,
+    tip: tip || null,
+  });
+});
