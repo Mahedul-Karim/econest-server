@@ -4,14 +4,19 @@ require("dotenv").config({ path: "./.env.local" });
 
 const { connectDB } = require("./config/db");
 const { handleError } = require("./controller/error");
+
+const userRoutes = require("./routes/user");
+
 const app = express();
 
 const PORT = process.env.PORT || 3000;
 
+connectDB();
+
 app.use(cors());
 app.use(express.json());
 
-connectDB();
+app.use("/user", userRoutes);
 
 app.use(handleError);
 
