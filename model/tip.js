@@ -36,6 +36,7 @@ const tipSchema = new mongoose.Schema({
   },
   email: {
     type: String,
+    required:true
   },
 });
 

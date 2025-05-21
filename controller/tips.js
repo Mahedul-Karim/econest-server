@@ -33,3 +33,40 @@ exports.userTips = asyncWrapper(async (req, res) => {
     tips,
   });
 });
+
+exports.deleteTips = asyncWrapper(async (req, res) => {
+  const { tipId } = req.params;
+
+  await Tip.findByIdAndDelete(tipId);
+
+  res.status(200).json({
+    success: true,
+    message: "Tip successfully deleted",
+  });
+});
+
+exports.updateTips = asyncWrapper(async (req, res) => {
+  const { tipId } = req.params;
+
+  const data = req.body;
+
+  const tip = await Tip.findByIdAndUpdate(tipId, data);
+
+  res.status(200).json({
+    success: true,
+    message: "Tip updated successfully!",
+    tip,
+  });
+});
+
+exports.createTip = asyncWrapper(async (req, res) => {
+  const data = req.body;
+
+  const tip = await Tip.create(data);
+
+  res.status(201).json({
+    success: true,
+    message: "Tip created successfully!",
+    tip,
+  });
+});
