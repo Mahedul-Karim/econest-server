@@ -2,8 +2,24 @@ const { asyncWrapper } = require("../util/async");
 const Tip = require("../model/tip");
 
 exports.allTips = asyncWrapper(async (req, res) => {
+  const { type } = req.query;
+
+  let query;
+
+  if (!type) {
+    query = {};
+  } else {
+    query = {
+      difficulty: {
+        $regex: type,
+        $options: "i",
+      },
+    };
+  }
+
   const tips = await Tip.find({
     availability: "Public",
+    ...query,
   });
 
   res.status(200).json({
